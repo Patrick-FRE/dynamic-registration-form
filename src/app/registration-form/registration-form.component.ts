@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-registration-form',
@@ -7,9 +8,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class RegistrationFormComponent implements OnInit {
 
-  constructor() { }
+  dynamicFormArray:any;
 
-  ngOnInit(): void {
+  constructor(private httpClient:HttpClient) { }
+
+  ngOnInit() {
+    this.httpClient.get('/assets/DynamicFormControl.json').subscribe(data => {
+      this.dynamicFormArray = data;
+      console.log(this.dynamicFormArray)
+    })
   }
 
 }
