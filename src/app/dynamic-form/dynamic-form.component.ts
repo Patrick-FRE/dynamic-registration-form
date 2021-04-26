@@ -3,11 +3,11 @@ import { HttpClient } from '@angular/common/http';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 
 @Component({
-  selector: 'app-registration-form',
-  templateUrl: './registration-form.component.html',
-  styleUrls: ['./registration-form.component.css']
+  selector: 'app-dynamic-form',
+  templateUrl: './dynamic-form.component.html',
+  styleUrls: ['./dynamic-form.component.css']
 })
-export class RegistrationFormComponent implements OnInit {
+export class DynamicFormComponent implements OnInit {
   registrationForm!: FormGroup;
   dynamicFormArray:any;
 
@@ -21,7 +21,7 @@ export class RegistrationFormComponent implements OnInit {
 
     });
 
-    this.httpClient.get('/assets/DynamicFormControl.json').subscribe(data => {
+    this.httpClient.get('/assets/RegistrationFormControl.json').subscribe(data => {
       this.dynamicFormArray = data;
       //call method here so once response binded to dynamicFormArray
         //then bind formControl w/ HTML control
@@ -35,6 +35,11 @@ export class RegistrationFormComponent implements OnInit {
     this.dynamicFormArray.forEach((element: { ID: string; }) => {
       this.registrationForm.addControl(element.ID, new FormControl(''))
     })
+  }
+
+  formSubmit(){
+    console.log("Clicked submit")
+    //subscribe to backend (another file to store form results)
   }
 
 }
