@@ -3,7 +3,8 @@
 </div>
 
 <section>
-    <form id="form">
+  <div class="col-md-12">{{registrationForm.value | json}}</div>
+    <form id="form" [formGroup]="registrationForm">
       <div class="row form">
         <!-- use dynamicFormArray to iterate each obj -->
         <div class="col-md-12" *ngFor="let control of dynamicFormArray">
@@ -14,7 +15,7 @@
                   <label>{{control.Label}}</label>
                 </div>
                 <div class="col-md-6">
-                  <input type="text" class="form-control">
+                  <input formControlName={{control.ID}} type="text" class="form-control">
                 </div>
               </div>
               <div *ngSwitchCase="'date'">
@@ -22,7 +23,7 @@
                   <label>{{control.Label}}</label>
                 </div>
                 <div class="col-md-6">
-                  <input type="date" class="form-control">
+                  <input formControlName={{control.ID}} type="date"  class="form-control">
                 </div>
               </div>
               <div *ngSwitchCase="'radio'">
@@ -32,7 +33,7 @@
                  <div class="col-md-6">
               <!-- on label, iterate loop ngFor -->
                    <label class="radio" *ngFor="let val of control.Value.split(',')" >
-                    <input type="radio" name="{{control.ID}}" value="{{val}}">
+                    <input formControlName={{control.ID}} type="radio"  name="{{control.ID}}" value="{{val}}">
                     {{val}}
                   </label>
                  </div>
@@ -43,7 +44,7 @@
                 </div>
                 <!-- bind option value from json obj -->
                 <div class="col-md-6">
-                  <select class="form-control">
+                  <select class="form-control" formControlName={{control.ID}}>
                     <option value="-1">Select</option>
                       <!-- using ngFor on option -->
                         <!-- split value based on comma -->

@@ -33,7 +33,7 @@
     "ID": "Gender",
     "Label": "Gender",
     "Type": "radio",
-    "Value": ""
+    "Value": "Male,Female"
   },
   {
     "ID": "Address",
